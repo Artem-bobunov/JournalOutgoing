@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block container %}
+{% if user.is_authenticated %}
+
+<style>
+td,th {
+text-align:center;
+}
+</style>
+<form  method="post">
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Подробная информация журнала исходящих</h5>
+    </div>
+    <div class="card-body">
+            {% csrf_token %}
+<table class="table table-bordered table-sm table-hover">
+    <thead  >
+    <tr class = "table-secondary">
+    <th> Номер исходящий</th>
+    <th> Дата регистрации</th>
+    <th>Адресат (кому направлен)</th>
+    <th>Краткое содержание</th>
+     <th>Исполнитель</th>
+    <th>Примечание</th>
+    </tr>
+    </thead>
+  <tbody>
+      <td>{{details.res_nm|default_if_none:"&nbsp;"}}</td>
+      <td>{{details.dateReg|default_if_none:"&nbsp;"}}</td>
+      <td>{{details.adresat|default_if_none:"&nbsp;"}}</td>
+      <td>{{details.content|default_if_none:"&nbsp;"}}</td>
+      <td>{{details.executor|default_if_none:"&nbsp;"}}</td>
+      <td>{{details.note|default_if_none:"&nbsp;"}}</td>
+  </tbody>
+</table>
+
+        {% if n1 == n2   %}
+
+             {% if pg  %}
+              <center><a class="btn btn-warning mt-2" href="{% url 'marks' details.pk %}" >Подписать</a ></center>
+             {% endif%}
+         {% endif%}
+
+
+
+      {% if user.is_superuser %}
+          <center><a class="btn btn-warning mt-2" href="{% url 'update' details.pk %}">Редактировать</a ></center>
+      {%endif%}
+
+    </div>
+    </div>
+</form>
+{% endif%}
+{% endblock %}
