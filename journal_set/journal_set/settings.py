@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'journal_set.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':'journal_outgping',
-        'USER':'postgres',
-        'PASSWORD':'Root123!',
-        'HOST':'192.168.1.253',
-        'PORT':'5439',
+        'NAME':'',
+        'USER':'',
+        'PASSWORD':'',
+        'HOST':'',
+        'PORT':'',
     }
 }
 
